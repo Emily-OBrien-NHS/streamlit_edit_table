@@ -3,7 +3,7 @@ from sqlalchemy.dialects.mssql import FLOAT, BIT, VARCHAR, INTEGER
 import pandas as pd
 import streamlit as st
 
-connection_string = st.secrets.CONN_STR
+connection_string = st.secrets["CONN_STR"]
 sdmart_engine = create_engine(connection_string)
 
 st.set_page_config(page_title="Edit Table",
