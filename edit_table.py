@@ -3,8 +3,10 @@ from sqlalchemy.dialects.mssql import FLOAT, BIT, VARCHAR, INTEGER
 import pandas as pd
 import streamlit as st
 
-with open("G:/PerfInfo/Performance Management/PIT Adhocs/2024-2025/Emily 2425/connection_string.txt","r") as f:
-    connection_string = f.read()
+connection_string = st.secrets('connection_string')
+
+#with open("G:/PerfInfo/Performance Management/PIT Adhocs/2024-2025/Emily 2425/connection_string.txt","r") as f:
+ #   connection_string = f.read()
 sdmart_engine = create_engine(connection_string)
 
 st.set_page_config(page_title="Edit Table",
