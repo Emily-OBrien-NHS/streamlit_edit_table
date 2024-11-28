@@ -42,8 +42,6 @@ if st.button('Save changes'):
                      if_exists='append', index=False,
                      dtype={'col1':INTEGER, 'col2':FLOAT, 'col3':VARCHAR(50),
                             'Tickbox':BIT, 'Comment':VARCHAR(200)})
-    edited_df.to_csv('C:/Users/obriene/Projects/Streamlit/edited_table.csv',
-                     index=False)
     st.success('Done!')
 
 sdmart_engine.dispose()
