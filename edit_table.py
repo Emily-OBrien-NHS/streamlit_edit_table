@@ -1,3 +1,5 @@
+#Needs pandas==2.1.4 and sqlalchemy==1.4.54 to replace table with to_sql
+#TODO Put this in requirements file
 from sqlalchemy import create_engine
 from sqlalchemy.dialects.mssql import FLOAT, BIT, VARCHAR, INTEGER
 import pandas as pd
@@ -17,6 +19,7 @@ st.title('Edit Table')
 st.write('''Streamlit App to edit and update a table.''')
 
 df = pd.read_sql('select * from [dbo].[streamlit_test]', sdmart_engine)
+df['Comment'] = 'This is a test'
 
 edited_df = st.data_editor(df,
                            column_config={"Tickbox": st.column_config
@@ -39,7 +42,7 @@ if len(st.session_state['table_key']['edited_rows']) > 0:
 if st.button('Save changes'):
     st.subheader('Saving updated data')
     edited_df.to_sql(name='streamlit_test2', con=sdmart_engine, schema='dbo',
-                     if_exists='append', index=False,
+                     if_exists='replace', index=False,
                      dtype={'col1':INTEGER, 'col2':FLOAT, 'col3':VARCHAR(50),
                             'Tickbox':BIT, 'Comment':VARCHAR(200)})
     st.success('Done!')
