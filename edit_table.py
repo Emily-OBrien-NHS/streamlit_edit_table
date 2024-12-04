@@ -2,10 +2,12 @@
 #TODO Put this in requirements file
 from sqlalchemy import create_engine
 from sqlalchemy.dialects.mssql import FLOAT, BIT, VARCHAR, INTEGER
+from sqlalchemy.engine import URL
 import pandas as pd
 import streamlit as st
 
-connection_string = st.secrets["CONN_STR"]
+connection_string = st.secrets["CONN_STR_2"]
+connection_url = URL.create("mssql+pyodbc", query={"odbc_connect": connection_string})
 #connection_string = f"mssql+pyodbc://{st.secrets["server"]}/{st.secrets["database"]}?;UID={st.secrets["username"]};PWD={st.secrets["password"]}&driver=ODBC+Driver+17+for+SQL+Server"
 sdmart_engine = create_engine(connection_string)
 
