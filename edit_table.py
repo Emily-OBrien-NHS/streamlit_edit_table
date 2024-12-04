@@ -18,8 +18,10 @@ st.set_page_config(page_title="Edit Table",
 st.title('Edit Table')
 st.write('''Streamlit App to edit and update a table.''')
 
-df = pd.read_sql('select * from [dbo].[streamlit_test]', sdmart_engine)
-df['Comment'] = 'This is a test'
+#df = pd.read_sql('select * from [dbo].[streamlit_test]', sdmart_engine)
+df = pd.DataFrame({'col1':[1,2,3,4,5], 'col2':[0.1,0.2,0.3,0.4,0.5],
+                   'col3':['blah']*5, 'Tickbox':[True, False, True, False, False],
+                   'Comment':['']*5})
 
 edited_df = st.data_editor(df,
                            column_config={"Tickbox": st.column_config
