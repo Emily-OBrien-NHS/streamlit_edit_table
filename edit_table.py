@@ -6,7 +6,7 @@ from sqlalchemy.engine import URL
 import pandas as pd
 import streamlit as st
 
-connection_string = st.secrets["CONN_STR_2"]
+connection_string = st.secrets["CONN_STR"]
 connection_url = URL.create("mssql+pyodbc", query={"odbc_connect": connection_string})
 #connection_string = f"mssql+pyodbc://{st.secrets["server"]}/{st.secrets["database"]}?;UID={st.secrets["username"]};PWD={st.secrets["password"]}&driver=ODBC+Driver+17+for+SQL+Server"
 sdmart_engine = create_engine(connection_string)
@@ -20,10 +20,10 @@ st.set_page_config(page_title="Edit Table",
 st.title('Edit Table')
 st.write('''Streamlit App to edit and update a table.''')
 
-#df = pd.read_sql('select * from [dbo].[streamlit_test]', sdmart_engine)
-df = pd.DataFrame({'col1':[1,2,3,4,5], 'col2':[0.1,0.2,0.3,0.4,0.5],
-                   'col3':['blah']*5, 'Tickbox':[True, False, True, False, False],
-                   'Comment':['']*5})
+df = pd.read_sql('select * from [dbo].[streamlit_test]', sdmart_engine)
+#df = pd.DataFrame({'col1':[1,2,3,4,5], 'col2':[0.1,0.2,0.3,0.4,0.5],
+ #                  'col3':['blah']*5, 'Tickbox':[True, False, True, False, False],
+  #                 'Comment':['']*5})
 
 edited_df = st.data_editor(df,
                            column_config={"Tickbox": st.column_config
